@@ -1,0 +1,59 @@
+#grafting args
+experiment_name: decomposition_graft
+fact_data: datasets/chatgpt_fact_dataset_100.json            #path to fact data
+task: lora_graft_finetune                                     #task to run: Options: ['lora_graft_finetune', 'lora_mlp_finetune',
+                                                              #'lora_attn_finetune', lora_all_finetune', 'finetune', 'graft_finetune' ]
+random_seed: 1                                                #random seed for reproducibility
+model_name: gpt2-small                                      #huggingface model name
+use_hf_model: true                                            #whether to load huggingface weights.
+ablation_method: "resample_uniform"                                   #Use resample ablation. Else use noise ablation.
+use_mle_token_graft: false                                     #Use MLE token graft. Else use target token graft.
+graft_type: "decomposition"                        #Use causal graft. Else use decomposition graft.
+noise_samples: 10                                             #Number of noise samples to generate for counterfactual.
+graft_threshold : 0.75 
+temperature: 0.85
+window_size: 5
+window_stride: 1
+
+#logging_args
+do_wandb: false                                                #whether to log to wandb  
+
+log_interval: 10                              
+                #log interval
+eval_interval: 10                                             #eval interval
+save_interval: 500                                            #save interval
+#lora args                              
+lora_dim: 2                                                   #lora attn dimension
+lora_alpha: 128                                               #lora attn alpha
+lora_dropout: 0.2                                             #dropout probability for lora layers   
+adapt_mlp_c_fc: true                                               #whether to adapt mlp_c_fc 
+adapt_mlp_c_proj: true                                             #whether to adapt mlp_c_proj
+adapt_attn_c_attn: true                                             #whether to adapt attn_c_attn  
+adapt_attn_c_proj: true                                             #whether to adapt attn_c_proj
+
+# Training Args                  
+test_size: 0.1                                                #train test split 
+completion_size: 0.2                                          #completion size        
+train_batch_size: 16                                           #training batch size
+valid_batch_size: 4                                           #validation batch size
+grad_acc: 1                                                   #gradient accumulation steps
+seq_len: 32                                                   #number of tokens to predict.
+max_epoch: 5                                                 #number of epochs to train
+use_kl_reg: true
+gamma : 0.1
+#model_card: gpt2.md                                          #choices=['gpt2.sm', 'gpt2.md', 'gpt2.lg'], 
+                
+init_checkpoint: null                                         #pretrained checkpoint path')
+fp16: false                                                   #train model with fp16')
+                
+work_dir: null                
+                
+obj: clm                                                      #language model training objective: clm, jlm
+label_smooth: 0.0                                             #label smoothing
+roll_interval: -1                                             #rolling interval
+roll_lr: 0.0001                                               #rolling learning rate
+roll_step: 100                                                #rolling step
+eval_epoch: 1                                                 #eval per number of epochs
+clip: 1.0                                                     #gradient clipping
+rank: 0              
+save_model: false                                             #save model

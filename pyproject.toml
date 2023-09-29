@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "lora"
+version = "0.1.0"
+description = ""
+authors = ["Theo Janson <tj@sfjtechnologies.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+einops = "^0.6.1"
+torch = ">=1.10"
+datasets = "^2.14.4"
+numpy = "^1.25.2"
+transformers = "^4.31.0"
+tqdm = "^4.66.1"
+pandas = "^2.0.3"
+wandb = "^0.15.8"
+fancy-einsum = "^0.0.3"
+rich = "^13.5.2"
+Sphinx = "^7.2.2"
+furo = "^2023.8.19"
+
+[tool.poetry.group.dev.dependencies]
+myst-parser = "^2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

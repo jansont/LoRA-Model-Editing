@@ -1,0 +1,19 @@
+name: gpt2-lora
+
+resources:
+  cloud: aws
+  region: us-east-1
+  accelerators: A10G:1
+  # use_spot: true
+  # spot_recovery: 'FAILOVER'
+
+workdir: .
+
+setup: |
+  echo "Begin setup."
+  pip install -r requirements.txt
+  echo "Setup complete."
+
+run: |
+  echo "Beginning task."
+  python main.py
